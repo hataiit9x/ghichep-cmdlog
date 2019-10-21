@@ -1,6 +1,7 @@
 #!/bin/bash
-# CMD log version 2 2019-10-05
-# ThinkVN
+# CMD log version 2.1 2019-10-21
+# CanhDX NhanHoa Cloud Team 
+# Mod by ThinkVN
 
 # Variable
 set -e
@@ -48,6 +49,7 @@ elif cat /etc/*release | grep ^NAME | grep Amazon > /dev/null 2>&1; then
 
     OS="Amazon Linux AMI"
     OS_VER="CentOS7"
+	
 else
     echo "Script doesn't support or verify this OS type/version"
     exit 1;
@@ -55,9 +57,9 @@ fi
 
 # Check install rsyslog
 echo "Check Rsyslog installed"
-if [[ $OS == "CentOS" ]]; then 
+if [[ $OS == "CentOS" ]] || [[ $OS == "Amazon Linux AMI" ]]; then 
     if ! rpm -qa | grep rsyslog > /dev/null 2>&1; then
-        yum install -y install rsyslog 
+        yum install -y rsyslog 
     fi 
 elif [[ $OS == "Ubuntu" ]]; then 
     if ! dpkg --get-selections | grep rsyslog > /dev/null 2>&1; then
@@ -69,7 +71,7 @@ fi
 echo "Check ccze installed"
 if [[ $OS == "CentOS" ]]; then 
     if ! rpm -qa | grep ccze > /dev/null 2>&1; then
-        yum install -y install ccze 
+        yum install -y ccze 
     fi 
 elif [[ $OS == "Ubuntu" ]]; then 
     if ! dpkg --get-selections | grep ccze > /dev/null 2>&1; then
@@ -77,10 +79,9 @@ elif [[ $OS == "Ubuntu" ]]; then
     fi 
 elif [[ $OS == "Amazon Linux AMI" ]]; then 
     if ! rpm -qa | grep ccze > /dev/null 2>&1; then
-        yum install -y install ccze 
+        sudo amazon-linux-extras install -y epel && yum install -y ccze 
     fi 
 fi
-
 
 # Check config cmdlog
 echo "Check old cmdlog config"
@@ -108,7 +109,7 @@ fi
 
 # Config for user add 
 echo "Config auto cmdlog for new useradd"
-if [[ $OS == "CentOS" ]]; then 
+if [[ $OS == "CentOS" ]] || [[ $OS == "Amazon Linux AMI" ]] ; then 
     echo "# Command log" >> /etc/skel/.bashrc
     echo "export PROMPT_COMMAND='RETRN_VAL=$?;logger -p local6.debug \"[\$(echo \$SSH_CLIENT | cut -d\" \" -f1)] # \$(history 1 | sed \"s/^[ ]*[0-9]\+[ ]*//\" )\"'" >> /etc/skel/.bashrc
     echo 'export HISTTIMEFORMAT="%d/%m/%y %T "' >> /etc/skel/.bashrc

@@ -13,6 +13,6 @@ Các phiên bản OS hỗ trợ
 - Ubuntu18 
 - Amazon Linux AMI
 
-Cách sử dụng
+### Installation
 ```tail -f /var/log/cmdlog.log | ccze -A ```
- Copy tu nguon nhanhoadocs/ghichep-cmdlog
+ Copy từ nguồn nhanhoadocs/ghichep-cmdlog
