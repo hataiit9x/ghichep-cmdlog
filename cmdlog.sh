@@ -68,16 +68,16 @@ fi
 # Check install ccze
 echo "Check ccze installed"
 if [[ $OS == "CentOS" ]]; then 
-    if ! rpm -qa | grep rsyslog > /dev/null 2>&1; then
-        yum install -y install rsyslog 
+    if ! rpm -qa | grep ccze > /dev/null 2>&1; then
+        yum install -y install ccze 
     fi 
 elif [[ $OS == "Ubuntu" ]]; then 
-    if ! dpkg --get-selections | grep rsyslog > /dev/null 2>&1; then
-        apt-get -y install rsyslog 
+    if ! dpkg --get-selections | grep ccze > /dev/null 2>&1; then
+        apt-get -y install ccze 
     fi 
 elif [[ $OS == "Amazon Linux AMI" ]]; then 
-    if ! rpm -qa | grep rsyslog > /dev/null 2>&1; then
-        yum install -y install rsyslog 
+    if ! rpm -qa | grep ccze > /dev/null 2>&1; then
+        yum install -y install ccze 
     fi 
 fi
 
