@@ -14,5 +14,5 @@ Các phiên bản OS hỗ trợ
 - Amazon Linux AMI
 
 Cách sử dụng
-```tail -f /var/log/cmdlog.log | ccze -A
+```tail -f /var/log/cmdlog.log | ccze -A ```
  Copy tu nguon nhanhoadocs/ghichep-cmdlog
