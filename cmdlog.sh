@@ -79,7 +79,7 @@ elif [[ $OS == "Ubuntu" ]]; then
     fi 
 elif [[ $OS == "Amazon Linux AMI" ]]; then 
     if ! rpm -qa | grep ccze > /dev/null 2>&1; then
-        sudo amazon-linux-extras install -y epel && yum install -y ccze 
+        sudo yum-config-manager --enable epel && yum install -y ccze 
     fi 
 fi
 
