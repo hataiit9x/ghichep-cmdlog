@@ -49,7 +49,11 @@ elif cat /etc/*release | grep ^NAME | grep Amazon > /dev/null 2>&1; then
 
     OS="Amazon Linux AMI"
     OS_VER="CentOS7"
-	
+elif cat /etc/*release | grep ^NAME | grep Oracle > /dev/null 2>&1; then
+
+    OS="Oracle Linux Server"
+    OS_VER="CentOS7"
+		
 else
     echo "Script doesn't support or verify this OS type/version"
     exit 1;
